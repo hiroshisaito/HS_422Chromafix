@@ -1,0 +1,168 @@
+{
+	Tools = ordered() {
+		HS_422Chromafix = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "ColorSpace1",
+					Source = "Input",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "ColorSpace1_2",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				ColorSpace1 = ColorSpace {
+					Inputs = {
+						ColorSpaceConversion = Input { Value = 1, },
+						ColorType = Input { Value = 2, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 538.707, 142.677 } },
+				},
+				ChannelBooleans1_1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 2, },
+						ToGreen = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 737.2, 102.984 } },
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 1, },
+						ToBlue = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 737.761, 63.2426 } },
+				},
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "ColorSpace1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 629.378, 141.619 } },
+				},
+				Scale1_2 = Scale {
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XSize = Input { Value = 2, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						FilterMethod = Input { Value = 4, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 895.971, 102.063 } },
+				},
+				Scale1 = Scale {
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XSize = Input { Value = 2, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						FilterMethod = Input { Value = 4, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1024.25, 62.3165 } },
+				},
+				Scale1_1_1 = Scale {
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XSize = Input { Value = 0.5, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						FilterMethod = Input { Value = 8, },
+						WindowMethod = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "Scale1_2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1041.54, 101.262 } },
+				},
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Scale1_1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1130.04, 101.014 } },
+				},
+				ChannelBooleans1_1_1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 5, },
+						ToGreen = Input { Value = 15, },
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1191.77, 143.616 } },
+				},
+				Scale1_1 = Scale {
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XSize = Input { Value = 0.5, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						FilterMethod = Input { Value = 8, },
+						Input = Input {
+							SourceOp = "Scale1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1204.41, 62.3264 } },
+				},
+				ChannelBooleans1_1_1_1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 5, },
+						ToBlue = Input { Value = 7, },
+						Background = Input {
+							SourceOp = "ChannelBooleans1_1_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Scale1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1363.08, 143.868 } },
+				},
+				ColorSpace1_2 = ColorSpace {
+					CtrlWZoom = false,
+					Inputs = {
+						ColorSpaceConversion = Input { Value = 2, },
+						ColorType = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1_1_1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1493.06, 143.898 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "HS_422Chromafix"
+}
